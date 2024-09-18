@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+
 class AuthServices {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
@@ -16,6 +17,8 @@ class AuthServices {
       UserCredential userCredential = await firebaseAuth
           .createUserWithEmailAndPassword(email: email, password: password);
 
+      print("Sucessfully user created");
+
       // Add user details to Firestore under 'users' collection
       await _firestore.collection("users").doc(userCredential.user!.uid).set({
         'name': name,
@@ -23,13 +26,16 @@ class AuthServices {
         'uid': userCredential.user!.uid,
       });
 
+      print("Sucessfully added to firestore");
+
       // Success message
       res = "Successfully executed";
     } catch (e) {
       // Set error message to return it
       res = e.toString();
-      print(e);
+      print("Error: $res");
     }
+    print("<<<-----------------------------------------------: $res--------------------------------------------->>>");
     return res;
   }
 }

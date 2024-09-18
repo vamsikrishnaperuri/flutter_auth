@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttergooglesignin/Services/auth.dart';
-import '../components/signupbutton.dart';
+import '../components/button.dart';
+import '../components/button.dart';
 import '../components/squaretile.dart';
 import '../components/textfields.dart';
 import 'Homepage.dart';
@@ -24,12 +25,13 @@ class _State extends State<SignupScreen> {
   final TextEditingController emaildcontroller = new  TextEditingController();
   bool isLoading = false;
 
-  void signupuser() async{
+  void signupUser() async{
     String res = await AuthServices().signupUser(
         name: usernamecontroller.text,
         email: emaildcontroller.text,
         password: passwordcontroller.text
     );
+    print("<<<-----------------------------------------------: $res--------------------------------------------->>>");
     if(res == "Successfully executed"){
       setState(() {
         isLoading = true;
@@ -97,8 +99,13 @@ class _State extends State<SignupScreen> {
                   const SizedBox(height: 20),
               
                   //signin button
-                  SignupButton(
-                      onTap: signupuser
+                  // SignupButton(
+                  //     onTap: signupuser
+                  // ),
+
+                  MyButtons(
+                    onTap: signupUser,
+                    text: "Sign Up",
                   ),
               
               
