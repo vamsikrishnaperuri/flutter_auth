@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "869821734609",
+    "project_id": "flutter-auth-eaa11",
+    "storage_bucket": "flutter-auth-eaa11.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:869821734609:android:ca94ab72a1a5a41dd1aff0",
+        "android_client_info": {
+          "package_name": "com.example.fluttergooglesignin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_BIuCKtHIWRqZsaXjAwxyGsVhgDXrrjc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
