@@ -17,29 +17,23 @@ class AuthServices {
       UserCredential userCredential = await firebaseAuth
           .createUserWithEmailAndPassword(email: email, password: password);
 
-      String str = userCredential.user!.uid;
-      print("$str");
+      // Retrieve the user UID
       if (userCredential.user != null) {
-        print("-------------------User ID: ${userCredential.user!.uid}-------------------");
-
-        print("Successfully created user");
-
+        String uid = userCredential.user!.uid;
+        print("User ID: $uid");
 
         // Add user details to Firestore under 'users' collection
-        await _firestore.collection("users").doc(userCredential.user!.uid).set({
+        await _firestore.collection("users").doc(uid).set({
           'name': name,
           'email': email,
-          // 'uid': userCredential.user!.uid,
+          'uid': uid,
         });
-        print("User ID: ${userCredential.user!.uid}");
 
         print("Successfully added to Firestore");
-
-        // Success message
         res = "Successfully executed";
       } else {
-        res = "User creation failed";
-        print("User is null after sign up");
+        res = "User creation failed: user is null";
+        print("Error: User creation failed");
       }
     } catch (e) {
       // Log detailed error message
@@ -47,8 +41,7 @@ class AuthServices {
       print("Error occurred: $res");
     }
 
-    print(
-        "<<<-----------------------------------------------: $res--------------------------------------------->>>");
+    print("<<<-----------------------------------------------: $res--------------------------------------------->>>");
     return res;
   }
 }
